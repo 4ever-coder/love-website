@@ -1,122 +1,194 @@
-# 🚀 Quick Setup Guide
+# 七夕情侣纪念网页使用说明
 
-## Step 1: Download the Project
-- Download or clone this repository to your computer
-- Extract the files to a folder of your choice
+这是一个基于 Vite + 原生 HTML/CSS/JavaScript 的静态纪念网页。姓名、日期、照片、时间线、情书和最终惊喜文案都集中在 `config.js` 中，不需要修改页面代码。
 
-## Step 2: Customize Your Love Website
-1. **Open** `config.js` in a text editor
-2. **Replace** the example values with your information:
-   - Change `partnerName` to your partner's name
-   - Change `yourName` to your name
-   - Customize the messages to make them personal
-   - Adjust memory descriptions to match your relationship
+## 1. 修改情侣信息
 
-## Step 3: Open the Website
-1. **Double-click** on `index.html` to open it in your web browser
-2. **Or** use a local server:
-   - Open terminal/command prompt in the project folder
-   - Run: `python -m http.server 8000`
-   - Open: `http://localhost:8000` in your browser
+打开项目根目录的 `config.js`，修改：
 
-## Step 4: Share the Love! 💕
-- Save the website files to a USB drive
-- Upload to a web hosting service
-- Share the link with your partner
-- Or run it locally and show them on your computer
-
-## 🎨 Customization Tips
-
-### Basic Customization
-- **Names**: Update `partnerName` and `yourName` in config.js
-- **Messages**: Personalize all the love messages
-- **Memories**: Make the memory descriptions specific to your relationship
-
-### Advanced Customization
-- **Colors**: Edit the CSS variables in `styles.css`
-- **Fonts**: Change the Google Fonts in `index.html`
-- **Images**: Replace the SVG avatars with real photos
-- **Music**: Update the audio sources in `index.html`
-
-### Example Config
-```javascript
-const CONFIG = {
-    partnerName: "Emma",
-    yourName: "James",
-    messages: {
-        subtitle: "you make every day brighter just by being in it ✨",
-        loveNote: "Emma, you are my everything. Every moment with you is a gift...",
-        // ... more messages
-    }
-};
+```js
+couple: {
+  partnerName: '对方姓名',
+  yourName: '你的姓名',
+  partnerAvatar: 'bubu.svg',
+  yourAvatar: 'dudu.svg',
+  startDate: '2025-08-29T20:00:00+08:00'
+}
 ```
 
-## 🌐 Hosting Options
+`startDate` 使用 ISO 时间格式。示例中的 `+08:00` 表示中国标准时间，计时器会根据这个时间实时计算相爱天数、小时、分钟和秒数。
 
-### Free Hosting
-- **GitHub Pages**: Upload to a GitHub repository and enable Pages
-- **Netlify**: Drag and drop the folder to Netlify
-- **Vercel**: Connect your GitHub repository to Vercel
+如果开始时间晚于当前时间，计时器会显示 0，不会出现负数。
 
-### Paid Hosting
-- **Shared Hosting**: Upload files via FTP
-- **VPS**: Deploy to your own server
-- **Cloud Services**: Use AWS, Google Cloud, or Azure
+## 2. 修改六个页面背景
 
-## 📱 Mobile Sharing
-- The website works perfectly on mobile devices
-- Share the link via text message, WhatsApp, or social media
-- Your partner can bookmark it for easy access
+六个内容区的背景统一在 `config.js` 的 `backgrounds` 中配置：
 
-## 🎉 Special Occasions
+```js
+backgrounds: {
+  cover: 'assets/qixi/cover.png',
+  timer: 'assets/qixi/timer.png',
+  timeline: 'assets/qixi/timeline.png',
+  photos: 'assets/qixi/photos.png',
+  letter: 'assets/qixi/letter.png',
+  surprise: 'assets/qixi/surprise.png'
+}
+```
 
-### Valentine's Day
-- Add Valentine's themed messages
-- Include heart emojis and romantic language
-- Set as a surprise for February 14th
+替换图片时，把新图片放入对应路径，建议使用竖屏比例、不要在图片中写入姓名或按钮文字。图片加载失败时会自动回退到暖白/淡紫纸张背景。
 
-### Anniversaries
-- Include your anniversary date in messages
-- Add specific memories from your relationship
-- Create a countdown to your next anniversary
+## 3. 添加情侣照片
 
-### Birthdays
-- Customize messages for your partner's birthday
-- Add birthday-themed elements
-- Include special birthday wishes
+推荐在项目根目录新建 `photos` 文件夹，把照片放进去，例如：
 
-## 🔧 Troubleshooting
+```text
+photos/
+  first-meet.jpg
+  sunset.jpg
+```
 
-### Website Not Loading
-- Check that all files are in the same folder
-- Ensure `config.js` is properly formatted
-- Try opening in a different browser
+然后在 `config.js` 的 `photos` 数组中填写：
 
-### Customization Not Working
-- Check for JavaScript errors in browser console
-- Ensure `config.js` is loaded before `script.js`
-- Verify all required fields are filled in config
+```js
+photos: [
+  {
+    src: 'photos/first-meet.jpg',
+    alt: '我们第一次见面的照片',
+    date: '2025.08.29',
+    caption: '故事从这一眼开始。'
+  }
+]
+```
 
-### Mobile Issues
-- Test on different mobile devices
-- Check responsive design in browser dev tools
-- Ensure touch interactions work properly
+路径相对于 `index.html` 所在目录。页面会使用本地照片，不依赖随机外链图片。图片无法加载时会显示占位提示，不会破坏布局。
 
-## 💡 Pro Tips
+## 4. 修改时间线
 
-1. **Test First**: Always test your customized website before sharing
-2. **Backup**: Keep a copy of your customized config.js
-3. **Update Regularly**: Add new memories and messages over time
-4. **Share Widely**: Let others know about this amazing project!
-5. **Contribute**: Help improve the project for everyone
+编辑 `config.js` 的 `timeline` 数组：
 
-## 🆘 Need Help?
+```js
+timeline: [
+  {
+    date: '2025.08.29',
+    title: '我们第一次见面',
+    description: '填写你们第一次相遇的故事'
+  }
+]
+```
 
-- Check the main README.md for detailed information
-- Look at config.example.js for reference
-- Open an issue on GitHub if you find bugs
-- Join discussions to share ideas and get help
+每一项都会生成一个时间线节点。点击节点会显示轻提示和轻微高亮效果。
 
----
+## 5. 修改情书
 
-**Happy loving! 💕**
+编辑 `letter`：
+
+```js
+letter: {
+  buttonLabel: '点击拆开情书',
+  closeButtonLabel: '收起情书',
+  title: '写给最特别的你',
+  hint: '有些话，还是想亲手交给你。',
+  paragraphs: [
+    '情书第一段',
+    '情书第二段'
+  ],
+  signature: '永远爱你的某某'
+}
+```
+
+情书正文默认不会出现在页面中，只有点击按钮后才会展开。
+
+## 6. 修改七夕惊喜
+
+编辑 `surprise`：
+
+```js
+surprise: {
+  eyebrow: '七夕快乐',
+  prompt: '最后，还有一份只属于你的小小惊喜。',
+  buttonLabel: '打开七夕惊喜',
+  replayButtonLabel: '再放一次烟花',
+  title: '以后每个七夕，都和你一起',
+  message: '愿我们一直拥有属于彼此的星河'
+}
+```
+
+点击按钮后会显示最终文案，并播放烟花、爱心和彩纸动画。再次点击可以重新播放。开启系统“减少动态效果”后，动画会减少，但最终文案仍然会显示。
+
+最终惊喜只发生在最后一个区块内：按钮按下后，0.00 秒第一朵烟花、0.45 秒第二朵、0.90 秒第三朵和爱心出现、1.20 秒标题与文案淡入，随后彩纸、爱心和微粒在约 2–6 秒内逐渐消散。页面不会跳转，也不会打开新的结果页。
+
+如需调整动效时长或数量，修改 `motion`：
+
+```js
+motion: {
+  sectionRevealDuration: 600,
+  fireworksDuration: 6200,
+  fireworksCount: 3,
+  reducedMotion: true
+}
+```
+
+## 7. 配置音乐
+
+默认没有音乐源，因此音乐按钮会自动隐藏，也不会请求失效的远程音频。
+
+如果需要音乐，建议使用项目内的本地文件：
+
+```text
+music/qixi.mp3
+```
+
+然后修改：
+
+```js
+music: {
+  enabled: true,
+  sources: ['music/qixi.mp3']
+}
+```
+
+浏览器通常要求用户先点击音乐按钮后才能播放声音，这是正常的自动播放限制。
+
+## 8. 启动项目
+
+在项目目录执行：
+
+```bash
+npm install
+npm run dev
+```
+
+然后打开：
+
+```text
+http://localhost:5173
+```
+
+也可以直接双击 `index.html` 查看静态页面。
+
+## 9. 手机尺寸测试
+
+在浏览器开发者工具中选择手机设备，建议测试：
+
+```text
+390 × 844
+```
+
+重点检查：
+
+- 页面没有横向滚动。
+- 六个区块都显示对应背景图，文字和照片仍然清晰可读。
+- 计时器每秒更新。
+- 情书点击前看不到正文。
+- 图片错误时有占位提示。
+- 最终按钮在当前第六区块内播放烟花、爱心和彩纸并显示文案，不改变 URL。
+- 音乐未配置时不会出现失效资源请求。
+
+## 10. 构建检查
+
+```bash
+npm run build
+git diff --check
+```
+
+页面会继续保留浮动装饰、音乐开关、隐藏情书、亲吻计数、双方姓名点击提示和记忆项目点击反馈等原有互动能力。

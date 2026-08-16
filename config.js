@@ -1,55 +1,153 @@
-// Love Website Configuration
-// Customize this file to personalize your love website
+// 七夕情侣纪念网页配置
+// 只需要修改这个文件，就可以替换页面中的姓名、日期、照片和文字。
 
 const CONFIG = {
-    // Partner's name (will be used throughout the website)
-    partnerName: "Your Love's Name",
-    
-    // Your name (optional, for signature)
-    yourName: "Your Name",
-    
-    // Custom messages
-    messages: {
-        subtitle: "you light up my world in ways words can't express ✨",
-        loveNote: "you are the sunshine in my darkest days and the stars in my night sky. Every moment with you feels like magic, and I fall in love with you more each day. You're not just my girlfriend, you're my best friend, my soulmate, and my everything. I love you beyond words! 💖",
-        specialMessage: "You came into my life like a beautiful surprise, and now I can't imagine my world without you. Your smile brightens my darkest days, your laugh is my favorite melody, and your love is the greatest gift I've ever received.",
-        specialMessage2: "Thank you for being you, for loving me, and for making every day feel like a celebration. I promise to love you, cherish you, and make you smile every single day of our lives together.",
-        signature: "With all my love, Forever yours 💕"
+  couple: {
+    partnerName: '月汐',
+    yourName: '江屿',
+    partnerAvatar: 'bubu.svg',
+    yourAvatar: 'dudu.svg',
+    startDate: '2025-08-29T20:00:00+08:00'
+  },
+
+  cover: {
+    eyebrow: '七夕 · 给我们',
+    title: '和你一起，慢慢变老',
+    subtitle: '从相遇的那天起，每一秒都值得被记住'
+  },
+
+  backgrounds: {
+    cover: 'assets/qixi/cover.png',
+    timer: 'assets/qixi/timer.png',
+    timeline: 'assets/qixi/timeline.png',
+    photos: 'assets/qixi/photos.png',
+    letter: 'assets/qixi/letter.png',
+    surprise: 'assets/qixi/surprise.png'
+  },
+
+  timer: {
+    label: '我们已经相爱',
+    suffix: '每一秒，都还在继续'
+  },
+
+  timeline: [
+    {
+      date: '2025.08.29',
+      title: '我们第一次见面',
+      description: '那天的风很轻，而我们的故事刚好开始。'
     },
-    
-    // Memory descriptions
-    memories: {
-        lateNight: "Those endless conversations that made us forget about time",
-        firstMeeting: "I know the day we meet will be magical and unforgettable",
-        care: "Your caring nature, sweet voice, and adorable cuteness"
+    {
+      date: '2025.09.01',
+      title: '第一次并肩看晚霞',
+      description: '从此以后，平凡的风景也有了值得分享的人。'
     },
-    
-    // Character descriptions
-    characters: {
-        partner: "My beautiful angel",
-        you: "Forever yours"
-    },
-    
-    // Special messages for different kiss counts
-    kissMessages: {
-        10: "10 kisses! You're so sweet! 💕",
-        50: "50 kisses! I'm falling deeper in love! 💖",
-        100: "100 kisses! You're my everything! 💘"
-    },
-    
-    // Character interaction messages
-    characterMessages: {
-        partner: "you're the most beautiful person in the world! 💕",
-        you: "I'm so lucky to have you in my life! 💖"
-    },
-    
-    // Memory effect messages
-    memoryMessages: {
-        lateNight: "Those late nights talking with you are my favorite memories 🌙✨",
-        firstMeeting: "I know the day we meet will be magical and unforgettable 💫💕",
-        care: "Your caring nature, sweet voice, and adorable cuteness melt my heart 💕😍"
+    {
+      date: '2026.02.14',
+      title: '把日子过成了纪念日',
+      description: '谢谢你一直在身边，让每个普通日子都变得温柔。'
     }
+  ],
+
+  photos: [
+    {
+      src: 'bubu.svg',
+      alt: '我们的第一张回忆照片',
+      date: '2025.08.29',
+      caption: '故事从这一眼开始。'
+    },
+    {
+      src: 'dudu.svg',
+      alt: '一起度过的温柔时光',
+      date: '2025.09.01',
+      caption: '晚风、月色，还有你。'
+    },
+    {
+      src: 'bubu.svg',
+      alt: '我们一起收藏的回忆',
+      date: '2026.02.14',
+      caption: '日子很长，我们慢慢记录。'
+    },
+    {
+      src: 'dudu.svg',
+      alt: '属于我们的七夕回忆',
+      date: '2026.08.19',
+      caption: '愿每一次回望，都有你在。'
+    }
+  ],
+
+  letter: {
+    buttonLabel: '点击拆开情书',
+    closeButtonLabel: '收起情书',
+    title: '写给最特别的你',
+    hint: '有些话，还是想亲手交给你。',
+    paragraphs: [
+      '月汐，见到你之后，我开始相信，日子可以因为一个人而变得有光。',
+      '谢谢你把温柔分给我，也谢谢你愿意和我一起，把每一个平常的瞬间过得认真。',
+      '往后的七夕、四季和漫长岁月，我都想和你并肩走过。'
+    ],
+    signature: '永远爱你的 江屿'
+  },
+
+  surprise: {
+    eyebrow: '七夕快乐',
+    prompt: '最后，还有一份只属于你的小小惊喜。',
+    buttonLabel: '打开七夕惊喜',
+    replayButtonLabel: '再放一次烟花',
+    title: '以后每个七夕，都和你一起',
+    message: '愿我们一直拥有属于彼此的星河，也愿每一次回头，都能看见对方。'
+  },
+
+  motion: {
+    sectionRevealDuration: 600,
+    fireworksDuration: 6200,
+    fireworksCount: 3,
+    reducedMotion: true
+  },
+
+  music: {
+    enabled: false,
+    sources: []
+  },
+
+  // 下面这些字段用于保留原项目的互动配置能力。
+  kissMessages: {
+    10: '十个吻，收到了。',
+    50: '五十个吻，今天也很喜欢你。',
+    100: '一百个吻，爱意已经满格。'
+  },
+
+  characterMessages: {
+    partner: '你是我想认真珍藏的人。',
+    you: '很幸运，故事里有你。'
+  },
+
+  memoryMessages: {
+    lateNight: '那些聊到深夜的时光，是我很喜欢的回忆。',
+    firstMeeting: '从那天开始，我们有了共同的故事。',
+    care: '谢谢你的细心照顾，也谢谢你的每一次回应。'
+  },
+
+  ui: {
+    scrollHint: '向下探索我们的故事',
+    timelineTitle: '我们的时间线',
+    timelineIntro: '一些被认真记住的日子，串起了我们走过的路。',
+    photosTitle: '把回忆留在这里',
+    photosIntro: '每一张照片，都是我们共同生活过的证据。',
+    letterEyebrow: '一封未寄出的信',
+    surpriseTitle: '给你的七夕礼物',
+    kissLabel: '已经送出',
+    kissHint: '轻轻点击，送出一枚心意',
+    kissButton: '送你一枚吻',
+    photoFallbackTitle: '照片暂未加载',
+    photoFallbackText: '请检查 config.js 中的图片路径',
+    close: '关闭',
+    musicPlay: '播放音乐',
+    musicPause: '暂停音乐',
+    musicUnavailable: '音乐暂时无法播放',
+    emptyTimeline: '还没有写下时间线，去 config.js 记录一段故事吧。',
+    emptyPhotos: '还没有添加照片，去 config.js 放入你们的回忆吧。'
+  }
 };
 
-// Make config available globally
+// 保持旧页面的全局配置使用方式。
 window.CONFIG = CONFIG;
