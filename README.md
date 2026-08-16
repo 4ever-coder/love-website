@@ -1,190 +1,265 @@
-# 💕 Love Website Generator
+# 七夕情侣纪念网页
 
-A beautiful, customizable love website generator that creates romantic websites for couples. Perfect for anniversaries, Valentine's Day, or just to show your love!
+这是一个为两个人定制的中文七夕情侣纪念网页。
 
-![Love Website Generator](https://img.shields.io/badge/Love-Website%20Generator-pink?style=for-the-badge&logo=heart)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![Version](https://img.shields.io/badge/Version-1.0.0-blue?style=for-the-badge)
+页面使用淡紫天空、杏粉花枝、月亮、河面和鹊桥作为视觉主线，把相爱天数、恋爱时间线、照片回忆、隐藏情书和最终七夕惊喜串成一段适合手机浏览的纪念故事。
 
-## ✨ Features
+项目使用 Vite + 原生 HTML、CSS 和 JavaScript，不依赖 UI 框架。姓名、日期、照片、时间线、情书内容、背景图和最终惊喜都集中在配置文件中，普通用户只需要修改配置即可完成个性化。
 
-- 💖 **Beautiful Design**: Elegant, romantic design with floating hearts and animations
-- 🎵 **Background Music**: Optional romantic background music
-- 💋 **Interactive Elements**: Kiss counter, love meter, and interactive memory cards
-- 📱 **Responsive**: Works perfectly on desktop, tablet, and mobile devices
-- 🎨 **Customizable**: Easy to personalize with your partner's name and messages
-- 🌟 **Special Effects**: Heart bursts, sparkles, and romantic animations
-- 💝 **Love Notes**: Hidden love messages that appear on click
-- 🎮 **Mini Games**: Fun interactive elements to engage your partner
+## 页面内容
 
-## 🚀 Quick Start
+网页从上到下依次包含六个区块：
 
-1. **Download or Clone** this repository
-2. **Open** `config.js` and customize it with your information
-3. **Open** `index.html` in your web browser
-4. **Share** the love with your partner! 💕
+1. 七夕封面
+2. 恋爱天数实时计时器
+3. 恋爱时间线
+4. 情侣照片回忆
+5. 点击打开的隐藏情书
+6. 页内七夕惊喜
 
-## 📝 Customization
+点击最后的“打开七夕惊喜”后，烟花、爱心和彩纸会在当前第六区块内播放，不跳转、不刷新，也不会创建新的结果页面。
 
-### Basic Setup
+## 主要功能
 
-Edit the `config.js` file to personalize your love website:
+- 恋爱开始日期实时计时，显示天、小时、分钟和秒
+- 六个区块使用同风格的独立竖屏背景图
+- 时间线由配置动态生成
+- 手机端两列不规则照片墙
+- 照片点击后打开大图查看层
+- 图片加载失败时显示暖白占位提示
+- 情书正文默认隐藏，点击后展开
+- 亲吻计数和轻量粒子反馈
+- 点击情侣姓名或头像显示提示
+- 点击时间线项目显示记忆反馈
+- 可选本地音乐控制
+- 最终区块内播放烟花、爱心和彩纸
+- 支持 `prefers-reduced-motion` 减少动态效果
+- 适配手机刘海屏和安全区域
 
-```javascript
-const CONFIG = {
-    // Your partner's name (will be used throughout the website)
-    partnerName: "Your Love's Name",
-    
-    // Your name (optional, for signature)
-    yourName: "Your Name",
-    
-    // Custom messages
-    messages: {
-        subtitle: "you light up my world in ways words can't express ✨",
-        loveNote: "your personalized love message here...",
-        // ... more customizable messages
-    }
-};
+## 快速启动
+
+确保本机已安装 Node.js，然后在项目目录执行：
+
+```bash
+npm install
+npm run dev
 ```
 
-### What You Can Customize
+浏览器打开：
 
-- **Names**: Partner's name and your name
-- **Messages**: Love notes, special messages, and descriptions
-- **Memories**: Customize memory descriptions and messages
-- **Character Descriptions**: Personalize how you describe each other
-- **Kiss Messages**: Special messages for different kiss counts
-- **Interactive Messages**: Messages that appear when clicking characters
+```text
+http://localhost:5173
+```
 
-## 🎨 Features Overview
+也可以直接双击 `index.html` 查看静态页面。需要调试或多人访问时，建议使用 `npm run dev`。
 
-### 💕 Interactive Love Section
-- Click the love button to reveal a hidden love note
-- Beautiful heart burst animation
-- Customizable love message
+## 修改个人信息
 
-### 🎮 Kiss Counter Game
-- Send virtual kisses to your partner
-- Special messages at 10, 50, and 100 kisses
-- Animated kiss effects
+所有个性化内容集中在项目根目录的 [`config.js`](config.js)。
 
-### 💫 Memory Gallery
-- Three interactive memory cards
-- Click to see special effects and messages
-- Customizable memory descriptions
+### 修改姓名和恋爱开始时间
 
-### ❤️ Love Meter
-- Shows infinite love (∞%)
-- Animated love meter
-- Beautiful gradient design
+```js
+couple: {
+  partnerName: '对方姓名',
+  yourName: '你的姓名',
+  partnerAvatar: 'bubu.svg',
+  yourAvatar: 'dudu.svg',
+  startDate: '2025-08-29T20:00:00+08:00'
+}
+```
 
-### 🎵 Background Music
-- Optional romantic background music
-- Music toggle button
-- Multiple audio sources for compatibility
+`startDate` 使用 ISO 时间格式。`+08:00` 表示中国标准时间。如果填写的时间晚于当前时间，计时器会显示为 0，不会出现负数。
 
-## 🛠️ Technical Details
+### 修改封面和计时器文案
 
-### Built With
-- **HTML5**: Semantic markup and modern features
-- **CSS3**: Beautiful animations, gradients, and responsive design
-- **JavaScript**: Interactive features and dynamic content
-- **Google Fonts**: Elegant typography (Great Vibes, Cormorant Garamond, etc.)
+```js
+cover: {
+  eyebrow: '七夕 · 给我们',
+  title: '和你一起，慢慢变老',
+  subtitle: '从相遇的那天起，每一秒都值得被记住'
+},
 
-### Browser Support
-- ✅ Chrome (recommended)
-- ✅ Firefox
-- ✅ Safari
-- ✅ Edge
-- ✅ Mobile browsers
+timer: {
+  label: '我们已经相爱',
+  suffix: '每一秒，都还在继续'
+}
+```
 
-### Performance
-- Optimized animations with `will-change` property
-- Efficient event handling
-- Minimal dependencies
-- Fast loading times
+### 修改时间线
 
-## 📱 Mobile Optimization
+```js
+timeline: [
+  {
+    date: '2025.08.29',
+    title: '我们第一次见面',
+    description: '填写你们第一次相遇的故事'
+  }
+]
+```
 
-The website is fully responsive and optimized for mobile devices:
-- Touch-friendly buttons and interactions
-- Optimized animations for mobile performance
-- Responsive typography and layouts
-- Mobile-specific CSS optimizations
+可以继续添加多个时间线项目。点击时间线项目后，会显示描述或配置中的记忆反馈。
 
-## 🎯 Use Cases
+### 添加情侣照片
 
-Perfect for:
-- **Anniversaries**: Celebrate your relationship milestones
-- **Valentine's Day**: Create a special Valentine's gift
-- **Birthdays**: Surprise your partner with a personalized website
-- **Long Distance**: Share love across the miles
-- **Proposals**: Create a romantic backdrop for your proposal
-- **Just Because**: Show your love any day of the year
+建议在项目根目录创建 `photos` 文件夹：
 
-## 🌟 Examples
+```text
+photos/
+  first-meet.jpg
+  sunset.jpg
+```
 
-### For Anniversaries
-- Customize messages to reflect your journey together
-- Add specific memories and milestones
-- Include your anniversary date in messages
+然后在 `config.js` 中填写：
 
-### For Valentine's Day
-- Use romantic Valentine's themes
-- Add heart-filled messages
-- Create a special Valentine's surprise
+```js
+photos: [
+  {
+    src: 'photos/first-meet.jpg',
+    alt: '我们第一次见面的照片',
+    date: '2025.08.29',
+    caption: '故事从这一眼开始。'
+  }
+]
+```
 
-### For Long Distance Relationships
-- Include messages about missing each other
-- Add countdown timers to your next meeting
-- Share virtual kisses and love
+图片路径相对于 `index.html`。建议使用清晰的生活照，并为每张图片填写准确的 `alt` 描述。
 
-## 🤝 Contributing
+### 修改隐藏情书
 
-We welcome contributions! Here's how you can help:
+```js
+letter: {
+  buttonLabel: '点击拆开情书',
+  closeButtonLabel: '收起情书',
+  title: '写给最特别的你',
+  hint: '有些话，还是想亲手交给你。',
+  paragraphs: [
+    '情书第一段',
+    '情书第二段'
+  ],
+  signature: '永远爱你的某某'
+}
+```
 
-1. **Fork** the repository
-2. **Create** a feature branch
-3. **Make** your changes
-4. **Test** thoroughly
-5. **Submit** a pull request
+情书正文在点击前不会显示，正文会通过安全的文本节点写入页面。
 
-### Ideas for Contributions
-- New interactive features
-- Additional customization options
-- New themes and color schemes
-- Performance improvements
-- Mobile optimizations
-- Accessibility improvements
+### 修改最终七夕惊喜
 
-## 📄 License
+```js
+surprise: {
+  eyebrow: '七夕快乐',
+  prompt: '最后，还有一份只属于你的小小惊喜。',
+  buttonLabel: '打开七夕惊喜',
+  replayButtonLabel: '再放一次烟花',
+  title: '以后每个七夕，都和你一起',
+  message: '愿我们一直拥有属于彼此的星河'
+}
+```
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+默认动效时序：
 
-## 💝 Support
+- `0.00` 秒：第一朵烟花绽放
+- `0.45` 秒：第二朵烟花绽放
+- `0.90` 秒：第三朵烟花和爱心粒子出现
+- `1.20` 秒：最终标题和文案淡入
+- `2–6` 秒：彩纸、爱心和微粒逐渐消散
 
-If you love this project and want to support it:
-- ⭐ Star the repository
-- 🐛 Report bugs
-- 💡 Suggest new features
-- 📢 Share with others
+动效参数可以在 `motion` 中调整：
 
-## 🎉 Acknowledgments
+```js
+motion: {
+  sectionRevealDuration: 600,
+  fireworksDuration: 6200,
+  fireworksCount: 3,
+  reducedMotion: true
+}
+```
 
-- Inspired by love and romance
-- Built with modern web technologies
-- Designed for couples everywhere
-- Made with ❤️ for the community
+### 修改六个页面背景
 
-## 📞 Contact
+背景图路径集中在 `config.js` 的 `backgrounds` 中：
 
-Have questions or suggestions? We'd love to hear from you!
+```js
+backgrounds: {
+  cover: 'assets/qixi/cover.png',
+  timer: 'assets/qixi/timer.png',
+  timeline: 'assets/qixi/timeline.png',
+  photos: 'assets/qixi/photos.png',
+  letter: 'assets/qixi/letter.png',
+  surprise: 'assets/qixi/surprise.png'
+}
+```
 
-- **GitHub Issues**: [Report bugs or request features](https://github.com/yourusername/love-website-generator/issues)
-- **Discussions**: [Join the conversation](https://github.com/yourusername/love-website-generator/discussions)
+替换背景时，建议使用竖屏图片，不要在图片中嵌入姓名、按钮、日期或正文。图片加载失败时会自动回退到暖白或淡紫纸张背景。
 
----
+### 配置音乐
 
-**Made with 💕 for couples everywhere**
+默认没有音乐源，因此右上角音乐按钮会自动隐藏，也不会请求失效音频。
 
-*Spread the love and share this project with others who might enjoy it!*
+如果需要添加本地音乐：
+
+```text
+music/qixi.mp3
+```
+
+然后修改：
+
+```js
+music: {
+  enabled: true,
+  sources: ['music/qixi.mp3']
+}
+```
+
+浏览器通常要求用户主动点击音乐按钮后才能播放声音，这是正常的自动播放限制。
+
+## 项目结构
+
+```text
+love/
+├─ index.html              页面结构
+├─ styles.css              当前页面样式和响应式布局
+├─ script.js               当前页面交互逻辑
+├─ config.js               个人信息和页面内容配置
+├─ config.example.js       配置示例
+├─ SETUP.md                更详细的使用说明
+├─ assets/qixi/            六个区块的背景图
+├─ bubu.svg                示例头像
+├─ dudu.svg                示例头像
+├─ vite.config.mjs         构建时复制静态资源
+└─ package.json            项目命令和依赖
+```
+
+仓库中保留了 `main.js`、`style.css`、`counter.js` 等旧文件，但它们不参与当前页面入口。当前入口是 `index.html`、`config.js`、`script.js` 和 `styles.css`。
+
+## 手机测试
+
+建议使用浏览器开发者工具模拟：
+
+```text
+390 × 844
+```
+
+重点检查：
+
+- 首屏背景明亮，标题和姓名清晰
+- 页面没有横向滚动
+- 恋爱计时器每秒更新
+- 时间线日期、标题和描述正常显示
+- 照片加载失败时出现占位卡片
+- 情书点击前看不到正文
+- 最终按钮在第六区块内播放动效
+- 动效结束后最终文案仍然保留
+- 减少动态效果模式下仍能看到最终文案
+- 未配置音乐时没有失效音频请求
+
+## 构建检查
+
+```bash
+npm run build
+git diff --check
+```
+
+## 许可证
+
+本项目沿用 MIT License，详见 [`LICENSE`](LICENSE)。

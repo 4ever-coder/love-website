@@ -1,7 +1,7 @@
 {
-  "name": "love-website-generator",
+  "name": "qixi-couple-memory",
   "version": "1.0.0",
-  "description": "A beautiful, customizable love website generator that creates romantic websites for couples",
+  "description": "Chinese Qixi couple anniversary memory website",
   "main": "index.html",
   "scripts": {
     "dev": "vite",
@@ -10,25 +10,21 @@
     "serve": "python -m http.server 8000"
   },
   "keywords": [
-    "love",
-    "romance",
-    "website",
-    "generator",
-    "couples",
-    "valentine",
+    "qixi",
+    "couple",
     "anniversary",
-    "relationship"
+    "memory"
   ],
-  "author": "Love Website Generator",
+  "author": "4ever-coder",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/love-website-generator.git"
+    "url": "https://github.com/4ever-coder/love-website.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/love-website-generator/issues"
+    "url": "https://github.com/4ever-coder/love-website/issues"
   },
-  "homepage": "https://github.com/yourusername/love-website-generator#readme",
+  "homepage": "https://github.com/4ever-coder/love-website#readme",
   "devDependencies": {
     "vite": "^5.4.2"
   }
