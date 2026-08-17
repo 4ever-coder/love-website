@@ -156,8 +156,14 @@ const CONFIG = {
   },
 
   music: {
-    enabled: false,
-    sources: []
+    enabled: true,
+    autoplay: true,
+    sources: [
+      {
+        src: 'music/juggshots-lunxian.mp3',
+        type: 'audio/mpeg'
+      }
+    ]
   },
 
   // 下面这些字段用于保留原项目的互动配置能力。

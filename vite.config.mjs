@@ -26,6 +26,12 @@ export default defineConfig({
           resolve(outDir, 'assets/qixi'),
           { recursive: true },
         );
+
+        cpSync(
+          resolve(projectRoot, 'music'),
+          resolve(outDir, 'music'),
+          { recursive: true },
+        );
       },
     },
   ],

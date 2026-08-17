@@ -161,7 +161,7 @@
           fireworksCount: 3,
           reducedMotion: true
         }, raw.motion || {}),
-        music: Object.assign({ enabled: false, sources: [] }, raw.music || {}),
+        music: Object.assign({ enabled: false, autoplay: false, sources: [] }, raw.music || {}),
         kissMessages: raw.kissMessages || {},
         characterMessages: raw.characterMessages || {
           partner: legacyCharacters.partner || '',
@@ -884,19 +884,61 @@
 
       elements.musicControl.hidden = false;
       setMusicButton(false);
+
+      const autoplayEvents = ['pointerdown', 'keydown', 'touchstart'];
+      let autoplayFallbackActive = false;
+
+      function removeAutoplayFallback() {
+        if (!autoplayFallbackActive) {
+          return;
+        }
+
+        autoplayEvents.forEach(function (eventName) {
+          document.removeEventListener(eventName, retryAutoplay);
+        });
+        autoplayFallbackActive = false;
+      }
+
+      function playMusic() {
+        return elements.bgMusic.play().then(function () {
+          setMusicButton(true);
+          removeAutoplayFallback();
+          return true;
+        }).catch(function () {
+          setMusicButton(false);
+          return false;
+        });
+      }
+
+      function retryAutoplay() {
+        if (elements.bgMusic.paused) {
+          playMusic();
+        } else {
+          removeAutoplayFallback();
+        }
+      }
+
       elements.musicToggle.addEventListener('click', function () {
         if (elements.bgMusic.paused) {
-          elements.bgMusic.play().then(function () {
-            setMusicButton(true);
-          }).catch(function () {
-            setMusicButton(false);
-            showToast(config.ui.musicUnavailable);
+          playMusic().then(function (started) {
+            if (!started) {
+              showToast(config.ui.musicUnavailable);
+            }
           });
         } else {
           elements.bgMusic.pause();
           setMusicButton(false);
         }
       });
+
+      if (music.autoplay) {
+        autoplayFallbackActive = true;
+        autoplayEvents.forEach(function (eventName) {
+          document.addEventListener(eventName, retryAutoplay, { passive: true });
+        });
+        elements.bgMusic.autoplay = true;
+        playMusic();
+      }
     }
 
     function setMusicButton(isPlaying) {
