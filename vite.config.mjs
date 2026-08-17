@@ -8,6 +8,7 @@ const legacyScripts = ['config.js', 'script.js', 'bubu.svg', 'dudu.svg'];
 const outDir = resolve(projectRoot, 'dist');
 
 export default defineConfig({
+  base: './',
   plugins: [
     {
       name: 'copy-legacy-scripts',
