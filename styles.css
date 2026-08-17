@@ -23,7 +23,7 @@
 html {
   min-width: 320px;
   scroll-behavior: smooth;
-  scroll-padding-top: 24px;
+  scroll-padding-top: 0;
 }
 
 body {
@@ -102,6 +102,95 @@ a:focus-visible {
 .site-shell {
   position: relative;
   z-index: 2;
+}
+
+body.page-flip-mode {
+  overflow: hidden;
+}
+
+body.page-flip-mode .site-shell {
+  height: 100svh;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+body.page-flip-mode .site-shell > .hero,
+body.page-flip-mode .site-shell > .section {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 100svh;
+  min-height: 100svh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  transform: translateY(100%);
+  transition: transform 760ms cubic-bezier(0.22, 0.7, 0.24, 1), opacity 760ms ease;
+  will-change: transform;
+}
+
+body.page-flip-mode .site-shell > .is-page-entering-forward,
+body.page-flip-mode .site-shell > .is-page-entering-backward,
+body.page-flip-mode .site-shell > .is-page-exiting-forward,
+body.page-flip-mode .site-shell > .is-page-exiting-backward {
+  visibility: visible;
+  opacity: 1;
+  z-index: 2;
+}
+
+body.page-flip-mode .site-shell > .is-page-entering-forward {
+  transform: translateY(100%);
+}
+
+body.page-flip-mode .site-shell > .is-page-entering-backward {
+  transform: translateY(-100%);
+}
+
+body.page-flip-mode .site-shell > .is-page-exiting-forward {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+body.page-flip-mode .site-shell > .is-page-exiting-backward {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+body.page-flip-mode .site-shell > .is-page-active {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 3;
+  transform: translateY(0);
+}
+
+body.page-flip-mode .site-shell > .hero,
+body.page-flip-mode .site-shell > .section {
+  scrollbar-color: rgba(180, 148, 102, 0.52) transparent;
+  scrollbar-width: thin;
+}
+
+body.page-flip-mode .site-shell > .hero::-webkit-scrollbar,
+body.page-flip-mode .site-shell > .section::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+body.page-flip-mode .site-shell > .hero::-webkit-scrollbar-track,
+body.page-flip-mode .site-shell > .section::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body.page-flip-mode .site-shell > .hero::-webkit-scrollbar-thumb,
+body.page-flip-mode .site-shell > .section::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background: rgba(180, 148, 102, 0.52);
+  background-clip: padding-box;
 }
 
 .music-control {
@@ -334,9 +423,11 @@ a:focus-visible {
 }
 
 .section {
+  --page-padding-top: 86px;
   position: relative;
+  min-height: 100svh;
   overflow: hidden;
-  padding: 86px max(20px, env(safe-area-inset-right)) 92px max(20px, env(safe-area-inset-left));
+  padding: var(--page-padding-top) max(20px, env(safe-area-inset-right)) 92px max(20px, env(safe-area-inset-left));
   isolation: isolate;
 }
 
@@ -346,7 +437,16 @@ a:focus-visible {
   margin-left: auto;
 }
 
-.section > .section-background,
+.section > .section-background {
+  position: sticky;
+  inset: auto;
+  top: 0;
+  width: 100vw;
+  height: 100svh;
+  margin: 0 0 -100svh calc((100% - 100vw) / 2);
+  animation-name: sectionBackgroundDrift;
+}
+
 .section > .celebrationCanvas {
   width: auto;
   margin: 0;
@@ -374,6 +474,11 @@ a:focus-visible {
 .section > :not(.section-background):not(.celebrationCanvas) {
   position: relative;
   z-index: 1;
+}
+
+.timeline-section > .section-heading,
+.timeline-section > .timeline-list {
+  width: min(100%, 920px);
 }
 
 .js-ready .reveal-item {
@@ -404,6 +509,10 @@ a:focus-visible {
   align-items: center;
   padding-bottom: max(90px, calc(90px + env(safe-area-inset-bottom)));
   background: var(--lavender);
+}
+
+.surprise-section > .section-background {
+  align-self: start;
 }
 
 .section-heading {
@@ -517,9 +626,9 @@ a:focus-visible {
 .timeline-list {
   position: relative;
   display: grid;
-  gap: 16px;
-  margin: 0;
-  padding: 4px 0 4px 28px;
+  gap: 20px;
+  margin: 0 auto;
+  padding: 4px 0 4px 36px;
   list-style: none;
 }
 
@@ -550,7 +659,7 @@ a:focus-visible {
 .timeline-marker {
   position: absolute;
   top: 20px;
-  left: -24px;
+  left: -32px;
   width: 10px;
   height: 10px;
   border: 1px solid var(--gold);
@@ -562,14 +671,21 @@ a:focus-visible {
 .timeline-card {
   display: grid;
   width: 100%;
-  gap: 7px;
-  padding: 17px 18px 18px;
+  gap: 0;
+  min-width: 0;
+  padding: 18px 26px 20px 22px;
   border: 1px solid transparent;
   background: transparent;
   text-align: left;
   cursor: pointer;
   transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
   animation: cardEnter 650ms ease var(--timeline-delay) both;
+}
+
+.timeline-card-copy {
+  display: grid;
+  min-width: 0;
+  gap: 8px;
 }
 
 .js-ready .timeline-list:not(.is-in-view) .timeline-card,
@@ -598,17 +714,22 @@ a:focus-visible {
 }
 
 .timeline-card-title {
+  display: block;
   color: var(--plum);
   font-family: var(--serif);
   font-size: 1.15rem;
   font-weight: 600;
   letter-spacing: 0.06em;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .timeline-card-description {
+  display: block;
   color: var(--muted);
   font-size: 0.86rem;
-  line-height: 1.8;
+  line-height: 1.9;
+  overflow-wrap: anywhere;
 }
 
 .empty-state {
@@ -641,7 +762,7 @@ a:focus-visible {
 }
 
 .photo-card:nth-child(2n) {
-  margin-top: 32px;
+  margin-top: 16px;
 }
 
 .photo-card:hover {
@@ -652,22 +773,25 @@ a:focus-visible {
 .photo-media {
   position: relative;
   display: block;
-  min-height: 124px;
+  aspect-ratio: 4 / 3;
+  min-height: 0;
+  overflow: hidden;
   background: var(--paper-deep);
 }
 
 .photo-media img {
   display: block;
   width: 100%;
-  height: auto;
-  min-height: 124px;
+  height: 100%;
+  min-height: 0;
   object-fit: contain;
   background: rgba(255, 248, 241, 0.88);
 }
 
 .photo-placeholder {
   display: grid;
-  min-height: 150px;
+  height: 100%;
+  min-height: 0;
   place-items: center;
   align-content: center;
   gap: 7px;
@@ -709,6 +833,7 @@ a:focus-visible {
 .letter-card {
   position: relative;
   overflow: hidden;
+  perspective: 1200px;
   padding: 44px 22px 24px;
   border: 1px solid rgba(180, 148, 102, 0.4);
   background: rgba(255, 253, 249, 0.68);
@@ -723,7 +848,7 @@ a:focus-visible {
 
 .envelope-seal {
   position: absolute;
-  top: 24px;
+  top: -20px;
   left: 50%;
   display: grid;
   width: 34px;
@@ -738,11 +863,22 @@ a:focus-visible {
 }
 
 .letter-cover {
+  position: relative;
+  z-index: 2;
   display: grid;
   min-height: 108px;
   place-items: center;
   align-content: center;
   gap: 18px;
+  background: rgba(255, 253, 249, 0.72);
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: transform 620ms cubic-bezier(0.22, 0.7, 0.24, 1);
+}
+
+.letter-card.is-open .letter-cover {
+  transform: rotateX(-155deg);
 }
 
 .letter-cover-line {
@@ -760,10 +896,20 @@ a:focus-visible {
 }
 
 .letter-content {
-  padding: 22px 2px 12px;
+  position: relative;
+  z-index: 1;
+  margin-top: -108px;
+  padding: 130px 2px 12px;
   border-top: 1px solid var(--line);
-  animation: letterOpen 500ms ease both;
+  opacity: 0;
   text-align: left;
+  transform: translateY(-10px);
+  transition: opacity 360ms ease, transform 360ms ease;
+}
+
+.letter-card.is-open .letter-content {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .letter-content h2 {
@@ -993,6 +1139,15 @@ a:focus-visible {
   to { transform: scale(1.05) translate3d(0, -0.7%, 0); }
 }
 
+@keyframes sectionBackgroundDrift {
+  from {
+    transform: translate3d(0, calc(-1 * var(--page-padding-top)), 0) scale(1.025);
+  }
+  to {
+    transform: translate3d(0, calc(-1 * var(--page-padding-top) - 0.7%), 0) scale(1.05);
+  }
+}
+
 @keyframes motifDrift {
   0%, 100% { opacity: 0.3; transform: translate3d(0, 0, 0); }
   50% { opacity: 0.62; transform: translate3d(5px, -12px, 0); }
@@ -1006,11 +1161,6 @@ a:focus-visible {
 
 @keyframes cardEnter {
   from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes letterOpen {
-  from { opacity: 0; transform: translateY(-8px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -1060,8 +1210,17 @@ a:focus-visible {
   }
 
   .section {
-    padding-top: 118px;
+    --page-padding-top: 118px;
+    padding-top: var(--page-padding-top);
     padding-bottom: 124px;
+  }
+
+  .timeline-list {
+    gap: 22px;
+  }
+
+  .timeline-card {
+    padding: 20px 28px 22px 24px;
   }
 
   .photo-grid {
@@ -1069,7 +1228,7 @@ a:focus-visible {
   }
 
   .photo-card:nth-child(2n) {
-    margin-top: 52px;
+    margin-top: 22px;
   }
 }
 
@@ -1116,5 +1275,23 @@ a:focus-visible {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .letter-card .letter-cover,
+  .letter-card .letter-content,
+  .letter-card.is-open .letter-cover,
+  .letter-card.is-open .letter-content {
+    transform: none;
+  }
+
+  body.page-flip-mode .site-shell > .hero,
+  body.page-flip-mode .site-shell > .section,
+  body.page-flip-mode .site-shell > .is-page-entering-forward,
+  body.page-flip-mode .site-shell > .is-page-entering-backward,
+  body.page-flip-mode .site-shell > .is-page-exiting-forward,
+  body.page-flip-mode .site-shell > .is-page-exiting-backward,
+  body.page-flip-mode .site-shell > .is-page-active {
+    transform: none;
+    transition: none;
   }
 }
