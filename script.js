@@ -130,12 +130,12 @@
           suffix: '每一秒，都还在继续'
         }, raw.timer || {}),
         backgrounds: Object.assign({
-          cover: 'assets/qixi/cover.png',
-          timer: 'assets/qixi/timer.png',
-          timeline: 'assets/qixi/timeline.png',
-          photos: 'assets/qixi/photos.png',
-          letter: 'assets/qixi/letter.png',
-          surprise: 'assets/qixi/surprise.png'
+          cover: 'assets/qixi/cover.webp',
+          timer: 'assets/qixi/timer.webp',
+          timeline: 'assets/qixi/timeline.webp',
+          photos: 'assets/qixi/photos.webp',
+          letter: 'assets/qixi/letter.webp',
+          surprise: 'assets/qixi/surprise.webp'
         }, raw.backgrounds || {}),
         timeline: Array.isArray(raw.timeline) ? raw.timeline : legacyTimeline,
         photos: Array.isArray(raw.photos) ? raw.photos : [],
@@ -273,12 +273,15 @@
           return;
         }
 
+        const backgroundValue = 'url("' + String(sourcePath).replace(/"/g, '\\"') + '")';
+        layer.style.backgroundImage = backgroundValue;
+        section.classList.add('has-background');
+
         const probe = new Image();
-        probe.onload = function () {
-          layer.style.backgroundImage = 'url("' + String(sourcePath).replace(/"/g, '\\"') + '")';
-          section.classList.add('has-background');
-        };
+        probe.decoding = 'async';
+        probe.fetchPriority = section.id === 'cover' ? 'high' : 'low';
         probe.onerror = function () {
+          section.classList.remove('has-background');
           section.classList.add('background-fallback');
           layer.removeAttribute('style');
         };

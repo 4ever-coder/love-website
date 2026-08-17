@@ -26,12 +26,12 @@ couple: {
 
 ```js
 backgrounds: {
-  cover: 'assets/qixi/cover.png',
-  timer: 'assets/qixi/timer.png',
-  timeline: 'assets/qixi/timeline.png',
-  photos: 'assets/qixi/photos.png',
-  letter: 'assets/qixi/letter.png',
-  surprise: 'assets/qixi/surprise.png'
+  cover: 'assets/qixi/cover.webp',
+  timer: 'assets/qixi/timer.webp',
+  timeline: 'assets/qixi/timeline.webp',
+  photos: 'assets/qixi/photos.webp',
+  letter: 'assets/qixi/letter.webp',
+  surprise: 'assets/qixi/surprise.webp'
 }
 ```
 
