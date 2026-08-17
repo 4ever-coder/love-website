@@ -1,21 +1,36 @@
-MIT License
+个人非商业使用许可协议
+Personal Use and Non-Commercial License
 
-Copyright (c) 2026 4ever-coder
+版权所有 (c) 2026 4ever-coder
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+本许可适用于本项目中由版权所有者拥有版权的代码、文档及其他原创内容。项目中的第三方素材、字体、音乐、图片或其他内容，如有单独授权，应以其原有授权条款为准。
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+一、授权范围
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+在遵守本许可全部条款的前提下，版权所有者授予你有限的、非独占的、不可转让的许可，仅用于个人学习、个人展示、个人纪念和其他非商业用途。你可以为上述目的运行、复制、修改和展示本项目。
+
+二、禁止的商业用途
+
+未经版权所有者事先书面许可，你不得：
+
+1. 将本项目或其衍生作品用于商业产品、商业项目、收费服务或商业宣传；
+2. 出售、出租、订阅收费、再许可、转授权本项目或其衍生作品；
+3. 将本项目用于广告变现、付费定制、客户交付或为第三方提供收费服务；
+4. 以本项目直接或间接获得商业利益、收入或其他金钱性报酬；
+5. 删除、隐藏或修改本许可及版权所有者声明，以规避本许可的限制。
+
+三、非商业分发
+
+你可以在非商业场景下分享本项目或其修改版本，但必须保留本许可、版权所有者声明，并明确标注你所做的修改；不得暗示版权所有者对你的作品或用途提供赞助、认可或背书。
+
+四、商业授权
+
+任何商业用途均须在使用前取得版权所有者的书面许可。商业授权的范围、费用和其他条件以双方书面约定为准。
+
+五、许可终止
+
+如果你违反本许可，授予你的许可将自动终止。许可终止后，你必须停止使用、复制、分发和展示本项目及其衍生作品。
+
+六、免责声明
+
+本项目按“现状”提供，不提供任何明示或默示的保证。在适用法律允许的最大范围内，版权所有者不对因使用本项目而产生的任何直接、间接、附带、特殊或后果性损失承担责任。
